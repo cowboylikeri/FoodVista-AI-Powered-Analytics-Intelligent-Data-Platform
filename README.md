@@ -34,25 +34,25 @@ Python · Pandas · Amazon S3 · Snowflake · dbt (`dbt-snowflake`) · Apache Ai
 
 ```text
 ├── airflow/                       # Airflow 3 on Docker
-│   ├── Dockerfile                 # Snowflake dependencies and Gemini SDK; dbt in its own venv
-│   ├── docker-compose.yaml        # Postgres, API server, scheduler; credentials injected via env vars
-│   ├── example.env                # Template for SNOWFLAKE_* / GEMINI_API_KEY / SAMPLE_N
-│   └── dags/zomato_batch.py       # Pipeline DAG (4 tasks)
+│   ├── Dockerfile                 #   Snowflake dependencies and Gemini SDK; dbt in its own venv
+│   ├── docker-compose.yaml        #   Postgres, API server, scheduler; credentials injected via env vars
+│   ├── example.env                #   Template for SNOWFLAKE_* / GEMINI_API_KEY / SAMPLE_N
+│   └── dags/zomato_batch.py       #   Pipeline DAG (4 tasks)
 ├── zomato/                        # dbt project
-│   ├── models/staging/            # 7 staging views (Silver), sources, and tests
-│   ├── models/marts/              # Dimensions, incremental facts, and business marts (Gold)
-│   └── macros/                    # Custom schema-name macro
+│   ├── models/staging/            #   7 staging views (Silver), sources, and tests
+│   ├── models/marts/              #   Dimensions, incremental facts, and business marts (Gold)
+│   └── macros/                    #   Custom schema-name macro
 ├── ai/                            # AI layer
-│   ├── enrich_reviews.py          # Gemini enrichment → ZOMATO.AI.REVIEW_ENRICHED
-│   ├── rag_chat.py                # RAG — chat with reviews (Streamlit)
-│   ├── text_to_sql.py             # Text-to-SQL — chat with the warehouse (Streamlit)
-│   └── example.env                # Template for AI credentials
+│   ├── enrich_reviews.py          #   Gemini enrichment → ZOMATO.AI.REVIEW_ENRICHED
+│   ├── rag_chat.py                #   RAG — chat with reviews (Streamlit)
+│   ├── text_to_sql.py             #   Text-to-SQL — chat with the warehouse (Streamlit)
+│   └── example.env                #   Template for AI credentials
 ├── snowflake/                     # Snowflake setup SQL (run in Snowsight, in order)
-│   ├── 01_setup.sql               # Warehouse ZOMATO_WH, database ZOMATO, schemas, role
-│   ├── 02_storage_integration.sql # Keyless S3 link (pairs with aws/iam/)
-│   ├── 03_stage_and_formats.sql   # External stage and CSV file format
-│   ├── 04_raw_tables.sql          # RAW (Bronze) table DDL; column order matches CSVs
-│   └── 05_copy_into.sql           # COPY INTO RAW from the stage
+│   ├── 01_setup.sql               #   Warehouse ZOMATO_WH, database ZOMATO, schemas, role
+│   ├── 02_storage_integration.sql #   Keyless S3 link (pairs with aws/iam/)
+│   ├── 03_stage_and_formats.sql   #   External stage and CSV file format
+│   ├── 04_raw_tables.sql          #   RAW (Bronze) table DDL; column order matches CSVs
+│   └── 05_copy_into.sql           #   COPY INTO RAW from the stage
 ├── aws/iam/                       # IAM policy and role-trust policies for S3 ↔ Snowflake
 └── docs/architecture.png          # Architecture diagram
 ```
